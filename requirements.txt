@@ -1,5 +1,5 @@
 pydantic
-# bittensor==7.4.0
+# bittensor==7.4.0 
 psutil
 GPUtil
 inflect
