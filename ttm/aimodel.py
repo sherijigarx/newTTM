@@ -41,12 +41,15 @@ class AIModelService:
         self.uid = self.metagraph.hotkeys.index(self.wallet.hotkey.ss58_address)
 
     def get_config(self):
-        parser = argparse.ArgumentParser()
+        parser = argparse.ArgumentParser(description='Validator for TTM')
 
         parser.add_argument("--alpha", default=0.75, type=float, help="Weight moving average for scoring.")
-        parser.add_argument("--netuid", type=int, default=16, help="The chain subnet UID.")
         parser.add_argument("--vcdnp", type=int, default=10, help="Number of miners to query for each forward call.")
-
+        parser.add_argument('--netuid', type=int, required=True, help='Network UID')
+        parser.add_argument('--wallet.name', type=str, required=True, help='Wallet name')
+        parser.add_argument('--wallet.hotkey', type=str, required=True, help='Wallet hotkey')
+        parser.add_argument('--logging.trace', action='store_true', help='Enable trace logging')
+        parser.add_argument('--subtensor.network', type=str, required=True, help='Subtensor network to connect to')
         # Add Bittensor specific arguments
         bt.subtensor.add_args(parser)
         bt.logging.add_args(parser)
